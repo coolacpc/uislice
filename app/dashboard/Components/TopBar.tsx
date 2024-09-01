@@ -95,7 +95,7 @@ export default function TopBar() {
         </div>
 
         <div className="flex flex-col max-sm:hidden ">
-          <span className="font-semibold">Welcome Back, {user?.lastName}</span>
+          <span className="font-semibold">Welcome Back, {user?.firstName}</span>
           <span className="text-slate-400 text-[11px] font-light">
             We are happy to see you again
           </span>
