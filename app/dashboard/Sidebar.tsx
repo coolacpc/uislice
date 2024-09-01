@@ -44,24 +44,19 @@ export default function SideBar() {
   }, [showSideBar, setShowSideBar, isMobileView]);
 
   useEffect(() => {
-    // If the user is on mobile view, stretch the sidebar to full width
     if (isMobileView) {
-      //stretch the sidebar
       setOpenSideBar(true);
-      //hide the sidebar
       setShowSideBar(false);
     } else {
-      //If the user is not on mobile view, show the sidebar
       setShowSideBar(true);
     }
-  }, [isMobileView]);
+  }, [isMobileView, setOpenSideBar, setShowSideBar]);
 
   return (
     <div
       ref={menuRef}
       style={{ position: isMobileView ? "fixed" : "relative" }}
-      className={`${openSideBar ? "w-[300px] p-6" : "w-[100px] p-4"} h-screen  pt-12   
-      transition-all duration-300 z-30 bg-white ${showSideBar ? "block" : "hidden"}  `}
+      className={`${openSideBar ? "w-[300px] p-6" : "w-[100px] p-4"} h-screen pt-12 transition-all duration-300 z-30 bg-white ${showSideBar ? "block" : "hidden"}`}
     >
       <RoundedArrowIcon />
       <Logo />
@@ -77,25 +72,19 @@ export default function SideBar() {
     } = useAppContext();
 
     function handleClick() {
-      setOpenSideBar(!openSideBar);
+      setOpenSideBar((prev) => !prev);
     }
 
     return (
       <div
         onClick={handleClick}
-        className={` w-7 h-7 z-40  rounded-full    right-[-11px] top-[95px] flex items-center justify-center ${!isMobileView ? "absolute" : "hidden"}`}
+        className={`w-7 h-7 z-40 rounded-full right-[-11px] top-[95px] flex items-center justify-center ${!isMobileView ? "absolute" : "hidden"}`}
       >
         <div className="bg-sky-500 rounded-full w-[70%] h-[70%] flex items-center justify-center cursor-pointer">
           {openSideBar ? (
-            <KeyboardArrowLeftIcon
-              fontSize="small"
-              className="text-white text-[12px]"
-            />
+            <KeyboardArrowLeftIcon fontSize="small" className="text-white text-[12px]" />
           ) : (
-            <KeyboardArrowRightIcon
-              fontSize="small"
-              className="text-white text-[12px]"
-            />
+            <KeyboardArrowRightIcon fontSize="small" className="text-white text-[12px]" />
           )}
         </div>
       </div>
@@ -108,14 +97,12 @@ export default function SideBar() {
     } = useAppContext();
     return (
       <div className="flex gap-2 items-center">
-        <div
-          className={`bg-sky-500 p-[6px] rounded-md w-12 h-12 flex items-center justify-center`}
-        >
+        <div className="bg-sky-500 p-[6px] rounded-md w-12 h-12 flex items-center justify-center">
           <DrawIcon sx={{ fontSize: 28 }} className="text-white text-[28px]" />
         </div>
         {openSideBar && (
-          <div className="flex gap-1 text-[23px] ">
-            <span className={`font-bold text-sky-500`}>UI</span>
+          <div className="flex gap-1 text-[23px]">
+            <span className="font-bold text-sky-500">UI</span>
             <span className="text-slate-600">Slice</span>
           </div>
         )}
@@ -147,8 +134,7 @@ export default function SideBar() {
           <div
             key={index}
             onClick={() => handleLinkClick(item)}
-            className={`${item.isSelected ? "bg-sky-500 text-white" : " text-slate-400 hover:text-sky-500 "} 
-            p-[7px] select-none cursor-pointer rounded-lg flex items-center gap-2 w-[65%]  `}
+            className={`${item.isSelected ? "bg-sky-500 text-white" : "text-slate-400 hover:text-sky-500"} p-[7px] select-none cursor-pointer rounded-lg flex items-center gap-2 w-[65%]`}
           >
             {item.icon}
             {openSideBar && <span className="mt-0.5">{item.name}</span>}
@@ -159,7 +145,6 @@ export default function SideBar() {
   }
 
   function LogOutButton() {
-    const { openSideBar } = useAppContext();
     const { signOut } = useClerk();
   
     const handleLogout = async () => {
@@ -173,13 +158,11 @@ export default function SideBar() {
     return (
       <div
         onClick={handleLogout}
-        className={`p-[7px] hover:text-sky-500 select-none cursor-pointer ${openSideBar ? "ml-3" : "ml-0"} mt-14 text-[15px] rounded-lg flex
-      items-center gap-2 w-[80%] text-slate-400`}
+        className="p-[7px] hover:text-sky-500 select-none cursor-pointer mt-14 text-[15px] rounded-lg flex items-center gap-2 w-[80%] text-slate-400"
       >
         <LogoutIcon />
-        <span className="mt-2">Log Out</span>
+        <span>Log Out</span>
       </div>
     );
   }
-  
 }
