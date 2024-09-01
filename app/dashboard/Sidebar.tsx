@@ -10,7 +10,7 @@ import { SiReact } from "react-icons/si";
 import { useAppContext } from "../ContextApi";
 import { MenuItem } from "../ContextApi";
 import DrawIcon from "@mui/icons-material/Draw";
-import { useClerk } from '@clerk/clerk-react'; // Import the hook
+import { useClerk } from "@clerk/clerk-react"; // Import the hook
 
 export default function SideBar() {
   const {
@@ -56,7 +56,9 @@ export default function SideBar() {
     <div
       ref={menuRef}
       style={{ position: isMobileView ? "fixed" : "relative" }}
-      className={`${openSideBar ? "w-[300px] p-6" : "w-[100px] p-4"} h-screen pt-12 transition-all duration-300 z-30 bg-white ${showSideBar ? "block" : "hidden"}`}
+      className={`${openSideBar ? "w-[300px] p-6" : "w-[100px] p-4"} h-screen pt-12 transition-all duration-300 z-30 bg-white ${
+        showSideBar ? "block" : "hidden"
+      }`}
     >
       <RoundedArrowIcon />
       <Logo />
@@ -78,7 +80,9 @@ export default function SideBar() {
     return (
       <div
         onClick={handleClick}
-        className={`w-7 h-7 z-40 rounded-full right-[-11px] top-[95px] flex items-center justify-center ${!isMobileView ? "absolute" : "hidden"}`}
+        className={`w-7 h-7 z-40 rounded-full right-[-11px] top-[95px] flex items-center justify-center ${
+          !isMobileView ? "absolute" : "hidden"
+        }`}
       >
         <div className="bg-sky-500 rounded-full w-[70%] h-[70%] flex items-center justify-center cursor-pointer">
           {openSideBar ? (
@@ -134,7 +138,9 @@ export default function SideBar() {
           <div
             key={index}
             onClick={() => handleLinkClick(item)}
-            className={`${item.isSelected ? "bg-sky-500 text-white" : "text-slate-400 hover:text-sky-500"} p-[7px] select-none cursor-pointer rounded-lg flex items-center gap-2 w-[65%]`}
+            className={`${
+              item.isSelected ? "bg-sky-500 text-white" : "text-slate-400 hover:text-sky-500"
+            } p-[7px] select-none cursor-pointer rounded-lg flex items-center gap-2 w-[65%]`}
           >
             {item.icon}
             {openSideBar && <span className="mt-0.5">{item.name}</span>}
@@ -146,22 +152,28 @@ export default function SideBar() {
 
   function LogOutButton() {
     const { signOut } = useClerk();
-  
+    const {
+      openSideBarObject: { openSideBar },
+    } = useAppContext();
+
     const handleLogout = async () => {
       try {
         await signOut();
+        // Redirect the user after sign-out if necessary
       } catch (error) {
         console.error("Logout failed", error);
       }
     };
-  
+
     return (
       <div
-        onClick={handleLogout}
-        className="p-[7px] hover:text-sky-500 select-none cursor-pointer mt-14 text-[15px] rounded-lg flex items-center gap-2 w-[80%] text-slate-400"
+        onClick={handleLogout} // Ensure the click event triggers the logout
+        className={`p-[7px] hover:text-sky-500 select-none cursor-pointer ${
+          openSideBar ? "ml-3" : "ml-0"
+        } mt-14 text-[15px] rounded-lg flex items-center gap-2 w-[80%] text-slate-400`}
       >
         <LogoutIcon />
-        <span>Log Out</span>
+        {openSideBar && <span className="mt-0.5">Log Out</span>}
       </div>
     );
   }
