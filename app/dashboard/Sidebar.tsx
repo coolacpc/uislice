@@ -10,6 +10,8 @@ import { SiReact } from "react-icons/si";
 import { useAppContext } from "../ContextApi";
 import { MenuItem } from "../ContextApi";
 import DrawIcon from "@mui/icons-material/Draw";
+import { useClerk } from '@clerk/clerk-react'; // Import the hook
+
 export default function SideBar() {
   const {
     openSideBarObject: { openSideBar, setOpenSideBar },
@@ -99,6 +101,7 @@ export default function SideBar() {
       </div>
     );
   }
+
   function Logo() {
     const {
       openSideBarObject: { openSideBar },
@@ -113,7 +116,7 @@ export default function SideBar() {
         {openSideBar && (
           <div className="flex gap-1 text-[23px] ">
             <span className={`font-bold text-sky-500`}>UI</span>
-            <span className="text-slate-600">Shelf</span>
+            <span className="text-slate-600">Slice</span>
           </div>
         )}
       </div>
@@ -135,6 +138,7 @@ export default function SideBar() {
         )
       );
     }
+
     return (
       <div
         className={`mt-44 ${openSideBar ? "ml-3" : "ml-0"} flex flex-col gap-2 text-[15px]`}
@@ -155,17 +159,27 @@ export default function SideBar() {
   }
 
   function LogOutButton() {
-    const {
-      openSideBarObject: { openSideBar },
-    } = useAppContext();
+    const { openSideBar } = useAppContext();
+    const { signOut } = useClerk();
+  
+    const handleLogout = async () => {
+      try {
+        await signOut();
+      } catch (error) {
+        console.error("Logout failed", error);
+      }
+    };
+  
     return (
       <div
+        onClick={handleLogout}
         className={`p-[7px] hover:text-sky-500 select-none cursor-pointer ${openSideBar ? "ml-3" : "ml-0"} mt-14 text-[15px] rounded-lg flex
       items-center gap-2 w-[80%] text-slate-400`}
       >
         <LogoutIcon />
-        {openSideBar && <span className="mt-0.5">Log Out</span>}
+        <span className="mt-2">Log Out</span>
       </div>
     );
   }
+  
 }
