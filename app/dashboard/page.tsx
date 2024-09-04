@@ -167,7 +167,7 @@ function LiveSearchBar() {
       ref={liveSearchBarRef}
       className={`fixed p-5 ${
         isMobileView ? "w-[70%]" : "w-[26%]"
-      } flex-col gap-3 flex shadow-md border border-slate-50 bg-white rounded-lg top-14 left-96 z-50`}
+      } flex-col gap-4 flex shadow-md border border-slate-50 bg-white rounded-lg top-14 left-96 z-50`}
     >
       {filteredComponents.length === 0 && filteredProjects.length === 0 && (
         <span className="text-slate-500 text-[12px]">No matched results...</span>
