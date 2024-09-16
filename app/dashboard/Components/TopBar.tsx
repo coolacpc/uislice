@@ -139,7 +139,7 @@ export default function TopBar() {
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
-    }, [setShowSearchBar]);
+    }, [openLiveSearchBar, setShowSearchBar]);
 
     return (
       <div

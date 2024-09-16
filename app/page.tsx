@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SiReact } from "react-icons/si";
 import StorageRoundedIcon from "@mui/icons-material/StorageRounded";
 import ChangeHistoryRoundedIcon from "@mui/icons-material/ChangeHistoryRounded";
@@ -16,6 +17,7 @@ function page() {
       <Navbar />
       <CTASection />
       <Features />
+      <SpeedInsights />
     </div>
   );
 

@@ -18,6 +18,7 @@
     "@monaco-editor/react": "^4.6.0",
     "@mui/icons-material": "^5.16.0",
     "@mui/material": "^5.16.0",
+    "@vercel/speed-insights": "^1.0.12",
     "ace-builds": "^1.35.2",
     "babylon": "^6.18.0",
     "glob": "^11.0.0",
