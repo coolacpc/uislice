@@ -65,6 +65,7 @@ Here are a few exciting features we have in the pipeline:
 
 * Collaborative Mode: Work on code snippets with your team in real-time.
 * Snippet Sharing: Share snippets with public/private links.
+* Create documentation for ease of use.
 * VSCode Extension: Save snippets directly from your code editor.
 * Stay tuned for more updates, and feel free to suggest features you’d like to see!
 
