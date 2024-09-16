@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
-import connect from "@/app/lib/connect";
+import connect from "@/app/lib/connect"; // This is where MongoDB is connected
 import Project from "@/app/Models/ProjectSchema";
-
 import { v4 as uuidv4 } from "uuid";
 
+// Function to handle POST request
 export async function POST(req: Request) {
   try {
     const { name, icon, clerkUserId, components } = await req.json();
 
+    // Connect to MongoDB
     await connect();
 
     const project = new Project({
@@ -34,12 +35,14 @@ export async function POST(req: Request) {
   }
 }
 
+// Function to handle GET request
 export async function GET(req: any) {
   try {
     const clerkUserId = req.nextUrl.searchParams.get("clerkUserId");
-    //Replace this function with the function
-    //to connect with MongoDB
+
+    // Connect to MongoDB
     await connect();
+
     console.log(clerkUserId);
 
     const res = await Project.find({ clerkUserId });
@@ -49,6 +52,7 @@ export async function GET(req: any) {
   }
 }
 
+// Function to handle DELETE request
 export async function DELETE(request: Request) {
   try {
     const url = new URL(request.url);
@@ -61,6 +65,9 @@ export async function DELETE(request: Request) {
       );
     }
 
+    // Connect to MongoDB
+    await connect();
+
     const projectToDelete = await Project.findOneAndDelete({ _id: projectId });
 
     if (!projectToDelete) {
@@ -72,7 +79,7 @@ export async function DELETE(request: Request) {
 
     return NextResponse.json({ message: "Project deleted successfully" });
   } catch (error) {
-    console.error("Error deleting project:", error); // Log the error for debugging
+    console.error("Error deleting project:", error);
     return NextResponse.json(
       { message: "Failed to delete project" },
       { status: 500 }
@@ -80,6 +87,7 @@ export async function DELETE(request: Request) {
   }
 }
 
+// Function to handle PUT request
 export async function PUT(request: Request) {
   try {
     const url = new URL(request.url);
@@ -94,7 +102,7 @@ export async function PUT(request: Request) {
       );
     }
 
-    // Connect to the database
+    // Connect to MongoDB
     await connect();
 
     let updatedProject;
