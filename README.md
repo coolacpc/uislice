@@ -2,6 +2,10 @@
 
 Welcome to **UI Slice**, a platform designed to make managing and reusing your code snippets easier than ever. This project is for developers who want an organized, intuitive way to save and reuse pieces of code across projects. Our goal is to help you **Cut**, **Save**, and **Repeat** your code effortlessly.
 
+* **Cut:** Remove unnecessary clutter from your code.
+* **Save:** Store your snippets for easy access and reuse.
+* **Repeat:** Quickly recall and apply your snippets to streamline development.
+
 ---
 
 ### ✂️ What is UI Slice?
@@ -61,6 +65,7 @@ Here are a few exciting features we have in the pipeline:
 
 * Collaborative Mode: Work on code snippets with your team in real-time.
 * Snippet Sharing: Share snippets with public/private links.
+* Create documentation for ease of use.
 * VSCode Extension: Save snippets directly from your code editor.
 * Stay tuned for more updates, and feel free to suggest features you’d like to see!
 
